@@ -27,7 +27,7 @@ module ActiveGraph
 
       def raw_indexes
         read_transaction do
-          result = query('CALL db.indexes()', {}, skip_instrumentation: true)
+          result = query('SHOW INDEXES', {}, skip_instrumentation: true)
           yield result.keys, result.reject { |row| row[:type] == 'LOOKUP' }
         end
       end
